@@ -13,7 +13,7 @@ const generateToken = ( uid = 0 ) => {
 
         jwt.sign(payload, jwtkey, {
             expiresIn: '3h'
-        })
+        });
     }, (err, token) => {
         if(err) {
             console.log(err);

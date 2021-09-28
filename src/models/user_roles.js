@@ -1,5 +1,5 @@
-import Sequelize from "sequelize";
-import { sequelize } from '../../config/dbConnection/database';
+const Sequelize = require("sequelize");
+const sequelize = require('../../config/dbConnection/database');
 
 const UserRoleModel = sequelize.define('user_roles', {
     role_id: {
@@ -12,4 +12,4 @@ const UserRoleModel = sequelize.define('user_roles', {
     timestamps: false
 });
 
-export default UserModel;
+module.exports = UserRoleModel;

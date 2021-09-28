@@ -7,6 +7,7 @@ const RoleModel = sequelize.define('role', {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
+        autoIncrement: true
 
     },
     name: {
@@ -17,7 +18,8 @@ const RoleModel = sequelize.define('role', {
 });
 
 RoleModel.hasMany(UserRoleModel, {
-    foreingKey: 'role_id'
+    foreingKey: 'role_id',
+    sourceKey: 'id'
 })
 
 export default RoleModel;

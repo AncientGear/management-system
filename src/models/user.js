@@ -19,7 +19,9 @@ const UserModel = sequelize.define('user', {
     email: {
         type: Sequelize.STRING
     },
-    token_id
+    token_id: {
+        
+    }
 }, {
     timestamps: false
 });

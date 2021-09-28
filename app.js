@@ -6,7 +6,7 @@ const cors = require('cors');
 const app = express();
 
 // routes import
-
+const userRoutes = require('./src/routes/user');
 
 // middlewares
 app.use(express.urlencoded({extended: true}));
@@ -15,8 +15,7 @@ app.use(express.json());
 app.use(cors());
 
 // route charge
-
+app.use('/api/v1', userRoutes);
 
 // export
-
 module.exports = app;

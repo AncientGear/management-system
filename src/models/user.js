@@ -1,13 +1,13 @@
-import Sequelize from "sequelize";
-import { sequelize } from '../../config/dbConnection/database';
+const Sequelize = require('sequelize');
+const sequelize = require('../../config/dbConnection/database')
 
 const UserRoleModel = require('./user_roles');
 
-const UserModel = sequelize.define('user', {
+const UserModel = sequelize.define('"user"', {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
-
+        autoIncrement: true
     },
     name: {
         type: Sequelize.TEXT
@@ -21,15 +21,20 @@ const UserModel = sequelize.define('user', {
     email: {
         type: Sequelize.STRING
     },
+    password: {
+        type: Sequelize.STRING
+    },
     token_id: {
         type: Sequelize.INTEGER
     }
 }, {
-    timestamps: false
+    timestamps: false,
+    freezeTableName: true
 });
 
-UserModel.hasMany(UserModel, {
-    foreingKey: 'user_id'
+UserModel.hasMany(UserRoleModel, {
+    foreingKey: 'user_id',
+    sourceKey: 'id'
 })
 
-export default UserModel;
+module.exports = UserModel;

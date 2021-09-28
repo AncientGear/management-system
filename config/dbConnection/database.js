@@ -1,6 +1,6 @@
-import Sequelize from 'sequelize';
+const Sequelize = require('sequelize')
 
-export const sequelize = new Sequelize(
+const sequelize = new Sequelize(
     'management_system',
     'postgres',
     'mysecretpassword',
@@ -16,3 +16,5 @@ export const sequelize = new Sequelize(
         logging: false
     }
 )
+
+module.exports = sequelize;

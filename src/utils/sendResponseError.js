@@ -1,7 +1,7 @@
 
 const sendResponseError = (req, res) => {
-    return res.status(res.err.statusCode).send({
-        message: res.err.message
+    return res.status(res.error.statusCode).send({
+        message: res.error.message
     })
 }
 

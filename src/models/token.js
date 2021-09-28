@@ -1,12 +1,13 @@
-import Sequelize from "sequelize";
-import { sequelize } from '../../config/dbConnection/database';
+const Sequelize = require('sequelize');
+const { sequelize } = require('../../config/dbConnection/database')
 
 import UserModel from './user'
 
 const TokenModel = sequelize.define('token', {
     id: {
         type: Sequelize.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     },
     token: {
         type: Sequelize.TEXT
@@ -16,7 +17,8 @@ const TokenModel = sequelize.define('token', {
 });
 
 TokenModel.hasOne(UserModel, {
-    foreingKey: 'token_id'
+    foreingKey: 'token_id',
+    sourceKey: 'id'
 })
 
-export default TokenModel;
+module.exports = TokenModel;

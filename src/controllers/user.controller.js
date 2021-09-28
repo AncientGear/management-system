@@ -3,7 +3,7 @@ const Sequelize = require("sequelize");
 const User = require('../models/user.js');
 
 const { generateHash } = require('../utils/cryptPassword')
-const { getUserById } = require('../utils/user')
+const { getUserById } = require('../utils/getUserById')
 
 const createUser = async (req, res, next) => {
     try {
@@ -43,8 +43,16 @@ const createUser = async (req, res, next) => {
 
 const authUser = (req, res, next) => {
     try {
-        
-        
+        const body = req.body;
+
+        const password = body.password;
+        const email = body.email;
+
+
+
+        return res.status(200).send({
+            message: 'User loged succesfully.'
+        })
     } catch(err) {
         console.log(err);
         res.error = {

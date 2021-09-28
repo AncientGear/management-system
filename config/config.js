@@ -1,6 +1,6 @@
 const config = {
     port: 3000,
-    jwtkey: "mysecretjwtpassword"
+    jwtkey: "mysecretjwtpasswordversion2"
 } 
 
 module.exports = config;

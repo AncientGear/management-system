@@ -60,4 +60,4 @@ CREATE TABLE IF NOT EXISTS user_roles(
 
 CREATE TABLE IF NOT EXISTS laboral_information(
     
-)
+);

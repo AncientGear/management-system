@@ -2,6 +2,7 @@ const Sequelize = require('sequelize');
 const sequelize = require('../../config/dbConnection/database')
 
 const UserRoleModel = require('./user_roles');
+const AreaModel = require('./area');
 
 const UserModel = sequelize.define('"user"', {
     id: {
@@ -34,6 +35,11 @@ const UserModel = sequelize.define('"user"', {
 
 UserModel.hasMany(UserRoleModel, {
     foreingKey: 'user_id',
+    sourceKey: 'id'
+});
+
+UserModel.hasMany(AreaModel, {
+    foreingKey: 'responsable_id',
     sourceKey: 'id'
 })
 

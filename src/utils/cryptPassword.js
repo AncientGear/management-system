@@ -18,5 +18,5 @@ const generateHash = (password) => {
 }
 
 module.exports = {
-
+    generateHash
 }

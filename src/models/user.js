@@ -20,13 +20,14 @@ const UserModel = sequelize.define('"user"', {
         type: Sequelize.TEXT
     },
     email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: true
     },
     password: {
         type: Sequelize.STRING
     },
-    token_id: {
-        type: Sequelize.INTEGER
+    token: {
+        type: Sequelize.TEXT
     }
 }, {
     timestamps: false,

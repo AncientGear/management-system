@@ -4,6 +4,10 @@ const User = require('../models/user.js');
 
 const { generateHash } = require('../utils/cryptPassword')
 const { getUserById } = require('../utils/getUserById')
+const { verifyUserEmail } = require('../utils/verifyUserMail');
+const { compareHash } = require('../utils/compareHash');
+const { generateToken } = require('../utils/generateToken');
+const { getUserByEmail } = require('../utils/getUserByEmail')
 
 const createUser = async (req, res, next) => {
     try {
@@ -41,44 +45,57 @@ const createUser = async (req, res, next) => {
     }
 }
 
-const authUser = (req, res, next) => {
+const updateUser = async (req, res, next) => {
+
+}
+
+const authUser = async (req, res, next) => {
     try {
         const body = req.body;
 
         const password = body.password;
         const email = body.email;
+        const userMailVerify = await verifyUserEmail(email);
+        if(userMailVerify === false) {
+            res.error = {
+                statusCode: 401,
+                message: 'Invalid Email or Password. Try again'
+            };
+            throw Error('Invalid Email or Password');
+        }
+
+        const user = req.user || await getUserByEmail(email);
+        const hashVerify = await compareHash(password, user.id);
+        if(hashVerify === false) {
+            res.error = {
+                statusCode: 401,
+                message: 'Invalid Email or Password. Try again'
+            };
+            throw Error('Invalid Email or Password');
+        }
 
 
+        const token = await generateToken(user.id, user.email);
+        await User.update({
+            token
+        }, {
+            where: {
+                email: user.email
+            }
+        })
 
         return res.status(200).send({
-            message: 'User loged succesfully.'
+            message: 'User logged succesfully.',
+            token
         })
     } catch(err) {
         console.log(err);
-        res.error = {
-            statusCode: err.statusCode || 500,
-            message: err.message || 'Has been occurred an Error. Contact with the admin.'
-        }
         next();
     }
 }
 
-const authAdmin = (req, res, next) => {
-    try {
-        
-
-    } catch(err) {
-        console.log(err);
-        res.error = {
-            statusCode: err.statusCode || 500,
-            message: err.message || 'Has been occurred an Error. Contact with the admin.'
-        }
-        next();
-    }
-}
 
 module.exports = {
     createUser,
-    authAdmin,
     authUser
 }

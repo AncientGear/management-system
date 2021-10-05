@@ -9,6 +9,8 @@ const { sendResponseError } = require('../utils/sendResponseError')
 const router = Router();
 
 router.post('/createUser', [verifyJWT], UserController.createUser, sendResponseError);
+router.put('/updateUser', [verifyJWT], UserController.updateUser, sendResponseError);
 router.post('/loginUser' ,UserController.authUser, sendResponseError);
+router.post('/loginAdmin', [], UserController.authUser, sendResponseError);
 
 module.exports = router;

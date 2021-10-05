@@ -56,3 +56,8 @@ CREATE TABLE IF NOT EXISTS user_roles(
 CREATE TABLE IF NOT EXISTS laboral_information(
     
 );
+
+
+INSERT INTO role(name) VALUES ('admin');
+INSERT INTO role(name) VALUES ('coordinador de calidad');
+INSERT INTO role(name) VALUES ('lider de equipo');

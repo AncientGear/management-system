@@ -9,7 +9,8 @@ const UserRoleModel = sequelize.define('user_roles', {
         type: Sequelize.INTEGER
     }
 }, {
-    timestamps: false
+    timestamps: false,
+    freezeTableName: true
 });
 
 module.exports = UserRoleModel;

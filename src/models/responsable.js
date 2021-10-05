@@ -9,7 +9,8 @@ const ResponsableModel = sequelize.define('responsable', {
         type: Sequelize.INTEGER
     }
 }, {
-    timestamps: false
+    timestamps: false,
+    freezeTableName: true
 });
 
 module.exports = UserRoleModel;

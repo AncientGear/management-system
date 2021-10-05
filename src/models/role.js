@@ -14,7 +14,8 @@ const RoleModel = sequelize.define('role', {
         type: Sequelize.TEXT
     }
 }, {
-    timestamps: false
+    timestamps: false,
+    freezeTableName: true
 });
 
 RoleModel.hasMany(UserRoleModel, {

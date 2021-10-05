@@ -130,11 +130,16 @@ CREATE TABLE IF NOT EXISTS audit_cal(
     qualify_by_id INTEGER,
     score_date_limit INTEGER,
     role_id INTEGER REFERENCES role(id),
-    user_id INTEGER REFERENCES user(id),
+    user_id INTEGER REFERENCES "user"(id),
     education_id INTEGER REFERENCES education(id),
     laboral_experience_id INTEGER REFERENCES laboral_experience(id)
 );
 
+CREATE TABLE IF NOT EXISTS audit_cal_user(
+    user_id INTEGER REFERENCES "user"(id),
+    audit_cal_id INTEGER REFERENCES audit_cal(id),
+    role_id INTEGER REFERENCES role(id)
+);
 
 INSERT INTO role(name) VALUES ('admin');
 INSERT INTO role(name) VALUES ('coordinador de calidad');

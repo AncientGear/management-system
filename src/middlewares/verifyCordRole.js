@@ -1,6 +1,6 @@
 const UserRole = require('../models/user_roles');
 
-const verifyAdminRole = (req, res, next) => {
+const verifyCordRole = (req, res, next) => {
     try {
         const user = req.user;
         const roles = await UserRole.find({
@@ -10,7 +10,7 @@ const verifyAdminRole = (req, res, next) => {
         })
 
         for(let i = 0; i < roles.length; i++) {
-            if(roles[i].name === "admin") {
+            if(roles[i].name === "coordinador de calidad") {
                 next();
             }
         }
@@ -28,5 +28,5 @@ const verifyAdminRole = (req, res, next) => {
 }
 
 module.exports = {
-    verifyAdminRole
+    verifyCordRole
 }

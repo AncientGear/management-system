@@ -13,7 +13,8 @@ const TokenModel = sequelize.define('token', {
         type: Sequelize.TEXT
     }
 }, {
-    timestamps: false
+    timestamps: false,
+    freezeTableName: true
 });
 
 TokenModel.hasOne(UserModel, {

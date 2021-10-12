@@ -16,7 +16,7 @@ const createUser = async (req, res, next) => {
         const password = generateHash(body.password);
         const userInfo = {
             name: body.name,
-            last_name: body.last_name,
+            last_name: body.lastName,
             prefix: body.prefix,
             email: body.email,
             password

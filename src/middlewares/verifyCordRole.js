@@ -3,22 +3,21 @@ const UserRole = require('../models/user_roles');
 const verifyCordRole = (req, res, next) => {
     try {
         const user = req.user;
-        const roles = await UserRole.find({
+        const role = await UserRole.find({
             where: {
-                user_id: user.id
+                user_id: user.id,
+                name: "coordinador de calidad"
             }
         })
 
-        for(let i = 0; i < roles.length; i++) {
-            if(roles[i].name === "coordinador de calidad") {
-                next();
+        if(!role) {
+            res.error = {
+                message: 'Invalid user role',
+                statusCode: 401
             }
+            throw new Error('Invalid user role.')
         }
-        res.error = {
-            statusCode: 401,
-            message: 'Invalid user role'
-        };
-        throw new Error('Invalid user role.')
+        next();
     } catch(err) {
         return res.status(res.error.statusCode).send({
             status: res.error.statusCode,

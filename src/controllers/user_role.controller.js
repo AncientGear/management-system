@@ -47,6 +47,35 @@ const addUserRole = async (req, res, next) => {
     }
 }
 
+const addTeamLeaderRole = async (req, res, next) => {
+    try {
+        const body = req.body;
+
+        const dataUserRole = {
+            role_id: 3,
+            user_id: body.userId
+        }
+
+        const newTeamLeader = await UserRoleModel.create(dataUserRole);
+
+        if(!newTeamLeader) {
+            res.error = {
+                statusCode: 401,
+                message: 'Cannot set Team Leader'
+            }
+        }
+
+        return res.status(201).send({
+            teamLeader: newTeamLeader,
+            message:'New team leader.'
+        })
+    } catch(err) {
+        console.log(err);
+        next();
+    }
+}
+
 module.exports = {
-    addUserRole
+    addUserRole,
+    addTeamLeaderRole
 }

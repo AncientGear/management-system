@@ -1,7 +1,7 @@
-import Sequelize from "sequelize";
-import { sequelize } from '../../config/dbConnection/database';
+const Sequelize = require('sequelize');
+const sequelize = require('../../config/dbConnection/database');
 
-import UserRoleModel from './user_roles';
+const UserRoleModel = require('./user_roles')
 
 const RoleModel = sequelize.define('role', {
     id: {
@@ -18,9 +18,4 @@ const RoleModel = sequelize.define('role', {
     freezeTableName: true
 });
 
-RoleModel.hasMany(UserRoleModel, {
-    foreingKey: 'role_id',
-    sourceKey: 'id'
-})
-
-export default RoleModel;
+module.exports = RoleModel;

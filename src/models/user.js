@@ -4,7 +4,7 @@ const sequelize = require('../../config/dbConnection/database')
 const UserRoleModel = require('./user_roles');
 const AreaModel = require('./area');
 
-const UserModel = sequelize.define('"user"', {
+const UserModel = sequelize.define("user", {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -34,14 +34,13 @@ const UserModel = sequelize.define('"user"', {
     freezeTableName: true
 });
 
-UserModel.hasMany(UserRoleModel, {
-    foreingKey: 'user_id',
-    sourceKey: 'id'
-});
+// UserModel.belongsTo(UserRoleModel, {
+//     foreingKey: 'user_id',
+//     sourceKey: 'id'
+// });
 
 UserModel.hasMany(AreaModel, {
-    foreingKey: 'responsable_id',
-    sourceKey: 'id'
+    foreingKey: 'responsable_id'
 })
 
 module.exports = UserModel;

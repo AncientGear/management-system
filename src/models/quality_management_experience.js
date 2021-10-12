@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const { sequelize } = require('../../config/dbConnection/database')
+const sequelize = require('../../config/dbConnection/database')
 
 const QualityManagementExperienceModel = sequelize.define('token', {
     id: {

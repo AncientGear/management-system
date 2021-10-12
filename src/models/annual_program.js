@@ -1,7 +1,9 @@
 const Sequelize = require('sequelize');
-const { sequelize } = require('../../config/dbConnection/database')
+const sequelize = require('../../config/dbConnection/database')
 
-const AnnualProgramModel = sequelize.define('token', {
+const AnnualProgrammActivitiesModel = require('./annual_program_activities')
+
+const AnnualProgramModel = sequelize.define('annual_programm', {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -24,5 +26,9 @@ const AnnualProgramModel = sequelize.define('token', {
     freezeTableName: true
 });
 
+// AnnualProgramModel.hasOne(AnnualProgrammActivitiesModel, {
+//     foreingKey: 'annual_programm_id',
+//     sourceKey: 'id'
+// });
 
 module.exports = AnnualProgramModel;

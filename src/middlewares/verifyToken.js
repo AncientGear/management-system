@@ -29,6 +29,7 @@ const verifyJWT = async (req, res, next) => {
             throw new Error('Invalid Token')
         }
         req.user = user;
+        console.log(req.user);
         next();
     } catch(err) {
         console.log(err);

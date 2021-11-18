@@ -1,12 +1,16 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../../config/dbConnection/database')
 
-const TokenModel = sequelize.define('token', {
-    
+const AuditExperienceModel = sequelize.define('audit_experience', {
+    id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    }
 }, {
     timestamps: false,
     freezeTableName: true
 });
 
 
-module.exports = TokenModel;
+module.exports = AuditExperienceModel;

@@ -12,18 +12,35 @@ const AnnualProgramModel = sequelize.define('annual_programm', {
     title: {
         type: Sequelize.TEXT
     },
-    total_weeks: {
-        type: Sequelize.INTEGER
+    totalWeeks: {
+        type: Sequelize.INTEGER,
+        field: 'total_weeks'
     },
-    month_start: {
-        type: Sequelize.TEXT
+    monthStart: {
+        type: Sequelize.TEXT,
+        field: 'month_start'
     },
-    month_end: {
-        type: Sequelize.TEXT
+    monthEnd: {
+        type: Sequelize.TEXT,
+        field: 'month_end'
     }
 }, {
     timestamps: false,
-    freezeTableName: true
+    freezeTableName: true,
+    indexes: [ 
+        {
+            unique: false,
+            fields: ['total_weeks']
+        },
+        {
+            unique: false,
+            fields: ['month_start']
+        },
+        {
+            unique: false,
+            fields: ['month_end']
+        }
+    ]
 });
 
 // AnnualProgramModel.hasOne(AnnualProgrammActivitiesModel, {

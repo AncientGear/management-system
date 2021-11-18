@@ -12,5 +12,6 @@ const router = Router();
 router.post('/createAnnualProgramm', [verifyJWT], AnnualProgrammController.createAnnualProgramm, sendResponseError);
 router.post('/createActivityProgramm', [verifyJWT], ActivitiesProgrammAnnualController.createActivityProgrammAnnual, sendResponseError);
 router.get('/getAllProgramms', [verifyJWT], AnnualProgrammController.getAllAnnualProgramm, sendResponseError);
+router.delete('/deleteProgramm/:id', [verifyJWT], AnnualProgrammController.deletePlan, sendResponseError);
 
 module.exports = router;

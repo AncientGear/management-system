@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../../config/dbConnection/database')
 
-const QualityManagementExperienceModel = sequelize.define('token', {
+const QualityManagementExperienceModel = sequelize.define('quality_management_experience', {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,

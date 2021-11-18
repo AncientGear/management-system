@@ -14,7 +14,6 @@ const verifyJWT = async (req, res, next) => {
 
     try {
         const tokenVerify = await jwt.verify(token, jwtkey);
-
         const user = await UserModel.findOne({
             where: {
                 id: tokenVerify.uid
@@ -29,14 +28,20 @@ const verifyJWT = async (req, res, next) => {
             throw new Error('Invalid Token')
         }
         req.user = user;
-        console.log(req.user);
         next();
     } catch(err) {
         console.log(err);
-        return res.status(401).send({
-            status: res.error.statusCode,
-            message: res.error.message
-        })
+        if(res.error !== undefined) {
+            return res.status(401).send({
+                status: res.error.statusCode || 500,
+                message: res.error.message || 'Internal server error'
+            })
+        } else {
+            return res.status(401).send({
+                status: 500,
+                message:'Internal server error'
+            })
+        }
     }
 }
 

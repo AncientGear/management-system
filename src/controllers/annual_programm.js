@@ -3,12 +3,12 @@ const AnnualProgrammModel = require('../models/annual_program');
 const createAnnualProgramm = async (req, res, next) => {
     try {
         const body = req.body;
-        console.log(2);
+        console.log(body);
         const annualProgrammInfo = {
             title: body.title,
-            total_weeks: body.totalWeeks,
-            month_start: body.monthStart,
-            month_end: body.monthEnd
+            totalWeeks: body.totalWeeks,
+            monthStart: body.monthStart,
+            monthEnd: body.monthEnd
         }
 
         const newAnnualProgramm = await AnnualProgrammModel.create(annualProgrammInfo);
@@ -51,7 +51,29 @@ const getAllAnnualProgramm = async (req, res, next) => {
     }
 }
 
+const deletePlan = async (req, res, next) => {
+    try {
+        const planId = req.params["id"];
+        await AnnualProgrammModel.destroy({
+            where: {
+                id: planId
+            }
+        });
+        const annualProgramms = await AnnualProgrammModel.findAll();
+        console.log("ap");
+        console.log(annualProgramms);
+        return res.status(200).send({
+            message: 'Programm Annual Deleted.',
+            programs: annualProgramms
+        })
+    } catch(err) {
+        console.log(err);
+        next();
+    }
+}
+
 module.exports = {
     createAnnualProgramm,
-    getAllAnnualProgramm
+    getAllAnnualProgramm,
+    deletePlan
 }
